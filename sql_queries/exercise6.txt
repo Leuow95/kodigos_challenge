@@ -1,0 +1,16 @@
+-- Crie um relatório que mostre a lista de armazém com maior valor financeiro para empresa em ordem decrescente.
+
+SELECT 
+    armazem.id AS id_armazem,
+    armazem.nome AS nome_armazem,
+    SUM(produto.valor * prodArmazem.qtd) AS valor_financeiro_total
+FROM 
+    Armazem armazem
+JOIN 
+    ProdArmazem prodArmazem ON armazem.id = prodArmazem.idArmazem
+JOIN 
+    Produto produto ON prodArmazem.idProduto = produto.id
+GROUP BY 
+    armazem.id, armazem.nome
+ORDER BY 
+    valor_financeiro_total DESC;

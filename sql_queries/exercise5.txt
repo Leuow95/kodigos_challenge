@@ -1,0 +1,10 @@
+--Crie uma consulta que mostre os produtos sem armazém alocados.
+SELECT 
+    p.id AS id_produto,
+    p.descricao AS descricao_produto
+FROM 
+    Produto p
+LEFT JOIN 
+    ProdArmazem pa ON p.id = pa.idProduto
+WHERE 
+    pa.idArmazem IS NULL;

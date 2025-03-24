@@ -1,0 +1,9 @@
+-- Crie uma consulta que informe todos os armazéns com o total ocupado.
+
+SELECT 
+    armazem.id,
+    armazen.nome,
+    SUM(produto.tam *produtoArmazem.qtd) AS total_ocupado
+FROM Armazem armazem
+JOIN ProdArmazem produtoArmazem ON armazem.id = produtoArmazem.idArmazem
+GROUP BY armazem.id, armazem.nome;

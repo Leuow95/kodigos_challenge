@@ -1,0 +1,3 @@
+--Crie um relatório que mostre os produtos que estão em mais armazéns (em quantidade de armazéns e não em
+acumulado).
+

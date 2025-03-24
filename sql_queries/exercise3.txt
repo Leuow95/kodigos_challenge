@@ -1,0 +1,30 @@
+-- Crie uma procedure que dado um produto como parâmetro, informe os 5 armazéns com maior quantidade desse
+produto.
+CREATE OR REPLACE FUNCTION get_top_5_armazens_por_produto(_id_produto INT)
+RETURNS TABLE (
+    id_armazem INT,
+    nome_armazem VARCHAR(255),
+    quantidade FLOAT
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        a.id,
+        a.nome,
+        pa.qtd
+    FROM 
+        Armazem a
+    JOIN 
+        ProdArmazem pa ON a.id = pa.idArmazem
+    WHERE 
+        pa.idProduto = _id_produto
+    ORDER BY 
+        pa.qtd DESC
+    LIMIT 5;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+-- Para usar a procedure, execute o comando abaixo, trocando o 1 pelo id do produto desejado
+SELECT * FROM get_top_5_armazens_por_produto(1);

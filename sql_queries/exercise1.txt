@@ -1,0 +1,22 @@
+-- Realize as criações das tabelas, definindo seus relacionamentos e chaves.
+
+CREATE TABLE Produto (
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(255) NOT NULL,
+    um VARCHAR(50) NOT NULL,
+    valor FLOAT NOT NULL,
+    tam FLOAT
+);
+
+CREATE TABLE Armazem (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    espacoTotal FLOAT NOT NULL
+);
+
+CREATE TABLE ProdArmazem (
+    idProduto INT REFERENCES Produto(id),
+    idArmazem INT REFERENCES Armazem(id),
+    qtd FLOAT NOT NULL,
+    PRIMARY KEY (idProduto, idArmazem)
+);
